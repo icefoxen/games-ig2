@@ -1,0 +1,6 @@
+{
+"name" : "companion neutron star",
+"resourceModifier" : 1.5,
+"grainularityModifier" : 0.1,
+"radiationModifier" : 1.0
+}

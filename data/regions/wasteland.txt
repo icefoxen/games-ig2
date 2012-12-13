@@ -1,0 +1,25 @@
+{
+"name" : "wasteland",
+"particleModifier" : 0.5,
+"hazardModifier" : 1.0,
+"ageModifier" : 1.0,
+"starTypes" : [
+   ["asteroid-field.txt", 0.05],
+   ["blackhole.txt", 0.05],
+   ["brown-dwarf.txt", 0.05],
+   ["frozen-dwarf.txt", 0.05],
+   ["gas-cloud.txt", 0.05],
+   ["giant.txt", 0.05],
+   ["large-mainsequence.txt", 0.05],
+   ["medium-mainsequence.txt", 0.05],
+   ["nebula.txt", 0.05],
+   ["neutronstar.txt", 0.05],
+   ["planetary-nebula.txt", 0.05],
+   ["proplyd.txt", 0.05],
+   ["red-dwarf.txt", 0.05],
+   ["small-mainsequence.txt", 0.05],
+   ["stellar-nursery.txt", 0.05],
+   ["supergiant.txt", 0.05],
+   ["white-dwarf.txt", 0.05]
+]
+}

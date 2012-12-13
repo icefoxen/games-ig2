@@ -1,0 +1,6 @@
+{
+"name" : "jovian",
+"resourceModifier" : 0.5,
+"grainularityModifier" : 1.8,
+"radiationModifier" : 2.0
+}

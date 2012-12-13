@@ -1,0 +1,27 @@
+{
+"name" : "supergiant",
+"numZones" : [2,8],
+"resourceModifier" : 1.0,
+"grainularityModifier" : 0.3,
+"radiationModifier" : 0.5,
+"zoneTypes" : [["chthonic.txt", 0.05],
+               ["cinder.txt", 0.05], 
+               ["companion-blackhole.txt", 0.05], 
+               ["companion-browndwarf.txt", 0.05], 
+               ["companion-neutronstar.txt", 0.05], 
+               ["companion-reddwarf.txt", 0.05], 
+               ["companion-whitedwarf.txt", 0.05], 
+               ["cyclopean.txt", 0.05], 
+               ["cydonian.txt", 0.05], 
+               ["empyrean.txt", 0.05], 
+               ["hadean.txt", 0.05], 
+               ["inferno.txt", 0.05], 
+               ["jovian.txt", 0.05], 
+               ["pontic.txt", 0.05], 
+               ["protean.txt", 0.05], 
+               ["rhean.txt", 0.05], 
+               ["selenic.txt", 0.05], 
+               ["tartaran.txt", 0.05], 
+               ["tethyd.txt", 0.05]
+              ]
+}

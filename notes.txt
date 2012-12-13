@@ -1,0 +1,213 @@
+ARCHITECTURE:
+We can always search for what we want, I bet... let's do our best to
+keep all links one-way with no indirection.  We can probably just
+optimize to more efficient data structures later, if we really need
+to.
+
+UNIVERSE GEN:
+Right now we can just have the thing drop clusters of stars near each
+other, and not actually bother with connecting them with lines.  Lines
+are hard.  So, regions.
+
+How are we going to do empires, if they aren't tied to a single race?
+Race and culture should be handled separately, at least.  And I think
+the empire should have a 'ruling culture' or such.
+
+Regions overlap slightly in influence; things get mixed up on the
+borders.  Stupid geometry.
+
+How are we going to have regions determine what kind of stars are in them?
+I think we have to do the same as stars do in region types, and have
+a cumulative probability wossname.
+
+We need to figure out how the heck the age of a region and space feature
+actually affects the zones in the space feature.
+
+GAMEPLAY: 
+Fleets need standing orders... default is probably 'search and
+destroy'.  Others could be 'skirmish', try to inflict damage without
+taking losses.  'Capture', annihilate military targets and leave
+civillian ones.  'Besiege' or 'Blockade', maybe?  'Patrol', engage
+enemy combatants within a certain range.  'Raid', try to inflict
+damage in neighboring enemy regions.
+
+BUGS:
+XXX: TODO: Make sure names aren't reused!!!
+XXX: Voronoi diagram!
+XXX: Checksums?
+
+Make the universe expansible?
+Then... empires and turn generation?
+Or networking and client?
+Then, technology and races
+Then, colonies
+Then saving and loading games
+Then fleets and (basic) combat...
+
+
+So figure out message protocol!
+Okay, upon first contact between client and server,
+1) both sides need to tell each other who they are
+2) Both sides need to have a list of config files and digests, and the client needs to
+get the server's list and make sure it has everything
+2a) If the client doesn't have some files, then maybe the server can send them.
+3) Compression???
+4) Remember, there are various levels of visibility the client will see...
+
+Protocol:
+Upon connection, the client sends server handshake containing:
+ * Username
+ * Password(?)
+ * Race and such...
+The server then sends the client game data containing:
+ * All users
+ * All races (names, at least)
+ * All data file names and checksums
+Upon the game start, the server sends the clients:
+ * Yo it's go time
+ * Turn data
+Each turn the client sends the server:
+ * Username, password
+ * Turn actions taken
+Then the server sends back to the client:
+ * New universe state as far as the client can see it
+
+We want a chat system too
+DATA:
+Universe:
+Star list
+Region list
+Empire list
+Fleet list
+Game metadata
+Universe generation data
+
+Region:
+Name
+Type
+Particle density
+Hazard
+Age
+
+Region type:
+
+
+Star:
+Name
+Type
+Region
+Coordinates
+Colony
+Zone
+Constellation
+
+Zone:
+Size
+Resources
+Grainularity (one object vs. a jillion asteroids)
+Transport
+Infrastructure
+Development
+Defense
+Temperature
+Radiation
+Zone type
+
+Zone type:
+Empyrean
+Inferno
+Cinder
+Chthonic
+Cydonian
+Protean
+Plutonic
+Selenic
+
+Colony:
+Population
+Transport
+Production
+Defense
+Culture distribution
+Sliders
+Attached heroes (if any)
+
+Empire:
+Name
+Culture(??)
+Race settings(???)
+Technology/Research
+Ship designs
+Fleet designs
+Foreign relations
+Colonies
+Abstract economy numbers (fleet maintenance, etc)
+Heroes
+
+Fleet:
+Design
+Location
+Ships
+Orders
+Attached heroes (if any)
+
+Game metadata:
+Client->empire mapping (maybe one-to-many!)
+Win condition
+Event types and frequencies
+
+Universe generation data:
+Shape
+New races generated as area explored?
+Infinite space?
+Number of starting races
+Amount of available technologies/starting race resources
+Stellar richness and age distribution sliders
+Type, intensity and frequency of random events
+
+
+
+
+TURN SEQUENCE:
+Receive changes from clients
+Update diplomacy
+Update movement
+Update combat
+Update culture&population
+Update economy
+Update colonization 
+Send state to clients
+
+
+
+LIBRARIES:
+Server:
+json (which requires parsec)
+mtl
+fgl
+Protocol buffers or Thrift???
+Start out with Thrift, maybe consider JSON+compression?  See how easy Thrift is to use first.  JSON doesn't include
+versioning.
+
+Client:
+json
+Protocol buffers or Thrift???
+Erm... ick.  Sound.  Ogg Vorbis???  Can't find a decoding library for it.
+
+
+Client has a couple of GUI options.  Make sure it supports pulseaudio,
+whichever route you go.
+GTK gui:
+GTK+
+GTK+ GL extensions
+openal for sound
+
+SDL gui:
+SDL
+opengl
+
+
+OPTIMIZATION:
+Right now, each config file lookup is a string lookup in the load cache map.  It should
+be entirely possible to convert those to integer lookups, which should be faster and
+also transfer more nicely/compactly over the wire.
